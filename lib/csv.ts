@@ -46,7 +46,9 @@ function splitCSVLine(line: string): string[] {
 }
 
 export async function fetchCSV(url: string): Promise<Record<string, string>[]> {
-  const res = await fetch(url, { cache: 'no-store' });
+  const res = await fetch(url, { 
+    next: { revalidate: 300 } // Cache for 5 minutes
+  });
   if (!res.ok) {
     throw new Error(`Failed to fetch CSV: ${url}`);
   }
