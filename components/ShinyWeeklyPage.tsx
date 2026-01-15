@@ -60,19 +60,22 @@ interface ShinyWeeklyPageProps {
 export function ShinyWeeklyPage({ weeks, members }: ShinyWeeklyPageProps) {
   const orderedWeeks = [...weeks].reverse();
 
-  // Collect sprite URLs from the most recent week for the 3D scene
-  const sceneSprites = useMemo(() => {
-    if (orderedWeeks.length === 0) return [];
+  // Collect sprite URLs and member names from the most recent week for the 3D scene
+  const sceneData = useMemo(() => {
+    if (orderedWeeks.length === 0) return { sprites: [], shinyData: [] };
     const latestWeek = orderedWeeks[0];
-    return latestWeek.shinies.map(s => getPokemonGif(s.name));
+    return {
+      sprites: latestWeek.shinies.map(s => getPokemonGif(s.name)),
+      shinyData: latestWeek.shinies.map(s => ({ name: s.name, member: s.member }))
+    };
   }, [orderedWeeks]);
 
   return (
     <div id="shinyweekly-container">
       {/* 3D Scene with walking Pokémon */}
-      {sceneSprites.length > 0 && (
+      {sceneData.sprites.length > 0 && (
         <ErrorBoundary>
-          <ShinyWeeklyScene pokemonSprites={sceneSprites} />
+          <ShinyWeeklyScene pokemonSprites={sceneData.sprites} shinyData={sceneData.shinyData} />
         </ErrorBoundary>
       )}
 
