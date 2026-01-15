@@ -242,6 +242,34 @@ select:focus-visible {
     padding: 0 var(--space-2);
   }
 
+  /* Ensure weekly page doesn't overlap */
+  .weekly-body {
+    margin-top: var(--space-2);
+  }
+
+  /* Mobile search controls */
+  .showcase-search-controls,
+  .search-controls {
+    padding: var(--space-1) var(--space-2);
+    gap: var(--space-1);
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .showcase-search-controls input[type="text"],
+  .search-controls input[type="text"],
+  .showcase-search-controls select,
+  .search-controls select {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .showcase-search-controls span,
+  .search-controls span {
+    text-align: center;
+    font-size: 11px;
+  }
+
   /* Mobile card grid adjustments */
   .dex-grid {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
@@ -280,6 +308,30 @@ select:focus-visible {
   .nav a {
     padding: 7px 12px;
     font-size: 11px;
+  }
+
+  /* Ensure weekly page doesn't overlap on tablet */
+  .weekly-body {
+    margin-top: var(--space-1);
+  }
+
+  /* Tablet search controls */
+  .showcase-search-controls,
+  .search-controls {
+    padding: var(--space-1) var(--space-2);
+    gap: var(--space-1);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .showcase-search-controls input[type="text"],
+  .search-controls input[type="text"],
+  .showcase-search-controls select,
+  .search-controls select {
+    padding: 7px 11px;
+    font-size: 13px;
+    flex: 1;
+    min-width: 120px;
   }
 
   .dex-grid {
