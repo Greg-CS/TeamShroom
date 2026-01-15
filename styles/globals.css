@@ -1,0 +1,10 @@
+/* Base Styles */
+@import "tailwindcss";
+@import './base.css';
+@import './layout.css';
+@import './cards.css';
+@import './buttons.css';
+@import './search.css';
+@import './tooltip.css';
+@import './donators.css';
+@import './shinyweekly.css';
