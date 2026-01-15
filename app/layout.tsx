@@ -19,6 +19,8 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
           rel="stylesheet"
         />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" href="/img/symbols/shroomsprite.png" />
       </head>
       <body>
         <Navigation />

@@ -143,7 +143,6 @@ Not affiliated with Nintendo, Game Freak, or PokeMMO.
 ├── style/                # CSS
 ├── img/                  # Static assets
 │
-├── CNAME
 └── README.md
 
 
