@@ -1,7 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import dynamic from 'next/dynamic';
 import { UnifiedCard } from './UnifiedCard';
+import { ShinyWeeklyScene2D as ShinyWeeklyScene } from './ShinyWeeklyScene2D';
 import {
   getMemberSprite,
   getPokemonGif,
@@ -11,6 +13,45 @@ import {
   type ShinyWeeklyEntry
 } from '@/lib/utils';
 
+// Error boundary component
+class ErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error) {
+    console.error('ShinyWeeklyScene error:', error);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="shiny-weekly-scene" style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center',
+          color: 'var(--text-muted)',
+          fontSize: 'var(--font-small)'
+        }}>
+          3D Scene unavailable
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+
+// Using 2D scene instead of Three.js to avoid errors
+
 interface ShinyWeeklyPageProps {
   weeks: ShinyWeek[];
   members: Member[];
@@ -19,8 +60,22 @@ interface ShinyWeeklyPageProps {
 export function ShinyWeeklyPage({ weeks, members }: ShinyWeeklyPageProps) {
   const orderedWeeks = [...weeks].reverse();
 
+  // Collect sprite URLs from the most recent week for the 3D scene
+  const sceneSprites = useMemo(() => {
+    if (orderedWeeks.length === 0) return [];
+    const latestWeek = orderedWeeks[0];
+    return latestWeek.shinies.map(s => getPokemonGif(s.name));
+  }, [orderedWeeks]);
+
   return (
     <div id="shinyweekly-container">
+      {/* 3D Scene with walking Pokémon */}
+      {sceneSprites.length > 0 && (
+        <ErrorBoundary>
+          <ShinyWeeklyScene pokemonSprites={sceneSprites} />
+        </ErrorBoundary>
+      )}
+
       {orderedWeeks.map((week, index) => (
         <WeekCard
           key={week.week}
