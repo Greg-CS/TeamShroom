@@ -104,7 +104,7 @@ export function HitlistPage({ showcase, pokemonData }: HitlistPageProps) {
 
   return (
     <>
-      <div className="search-controls">
+      <div className="search-controls  mt-[25dvh] md:mt-[10dvh]">
         <input
           type="text"
           placeholder="Search Pokémon or Region"

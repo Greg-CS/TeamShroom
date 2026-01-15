@@ -176,7 +176,7 @@ export function ShinyWeeklyScene2D({ pokemonSprites, shinyData }: ShinyWeeklySce
   };
 
   return (
-    <div className="shiny-weekly-scene">
+    <div className="shiny-weekly-scene mt-[25vh] md:mt-[10vh]">
       <div ref={containerRef} className="scene-2d-container">
         {/* Background image with 3D depth layers */}
         <div className="scene-background" />

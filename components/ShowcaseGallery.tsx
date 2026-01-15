@@ -124,7 +124,7 @@ export function ShowcaseGallery({
 
   return (
     <>
-      <div className="showcase-search-controls">
+      <div className="showcase-search-controls mt-[25dvh] md:mt-[10dvh]">
         <input
           type="text"
           placeholder="Search Member"

@@ -87,7 +87,7 @@ export function DonatorsPage({ donations }: DonatorsPageProps) {
 
   return (
     <>
-      <div className="donators-top-flex">
+      <div className="donators-top-flex  mt-[25dvh] md:mt-[10dvh]">
         <div className="last-donations-fixed-box">
           <h2>Last Donations</h2>
           <table className="last-donations-table">
