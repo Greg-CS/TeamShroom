@@ -960,6 +960,17 @@ select:focus-visible {
   border-radius: 14px;
 }
 
+.scene-background {
+  position: absolute;
+  inset: 0;
+  background-image: url('/pokemon-theme-1.jpg');
+  /* background-size: 64px 64px; */
+  background-position: center;
+  /* background-repeat: repeat; */
+  /* opacity: 0.1; */
+  /* filter: grayscale(0.5); */
+}
+
 .scene-grid {
   position: absolute;
   inset: 0;
@@ -968,18 +979,15 @@ select:focus-visible {
     linear-gradient(90deg, rgba(42, 48, 64, 0.3) 1px, transparent 1px);
   background-size: 1rem 1rem;
   pointer-events: none;
+  z-index: 1;
 }
 
 .walking-mon-2d {
   position: absolute;
   width: 32px;
   height: 32px;
-  left: var(--start-x);
-  top: var(--start-y);
-  transform: translate(-50%, -50%);
-  animation: walkAround var(--duration) infinite;
-  animation-delay: var(--delay);
-  z-index: 1;
+  z-index: 2;
+  transition: transform 0.1s linear;
 }
 
 .mon-sprite {
@@ -989,32 +997,4 @@ select:focus-visible {
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-}
-
-@keyframes walkAround {
-  0% {
-    left: var(--start-x);
-    top: var(--start-y);
-    transform: translate(-50%, -50%) scaleX(1);
-  }
-  25% {
-    left: calc(90% - var(--start-x));
-    top: var(--start-y);
-    transform: translate(-50%, -50%) scaleX(-1);
-  }
-  50% {
-    left: calc(90% - var(--start-x));
-    top: calc(80% - var(--start-y));
-    transform: translate(-50%, -50%) scaleX(-1);
-  }
-  75% {
-    left: var(--start-x);
-    top: calc(80% - var(--start-y));
-    transform: translate(-50%, -50%) scaleX(1);
-  }
-  100% {
-    left: var(--start-x);
-    top: var(--start-y);
-    transform: translate(-50%, -50%) scaleX(1);
-  }
 }
